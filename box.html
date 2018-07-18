@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>box</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+    <style>
+        #box {
+            width: 300px;
+            height: 300px;
+            /* box-sizing: content-box; */
+            box-sizing: border-box;
+            background: red;
+            padding: 20px;
+            border: 10px solid black;
+        }
+    </style>
+    <script>
+        window.onload = () => {
+            let oDiv = document.querySelector('#box');
+            alert(oDiv.offsetWidth);
+        };
+    </script>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+</html>

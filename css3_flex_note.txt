@@ -1,0 +1,155 @@
+css3 flex 布局
+https://caniuse.com/ 查看css属性的兼容情况
+
+盒子模型
+    content-box 平时普通的盒子模型， padding border等会改变盒子的大小
+        向外扩展
+    css3 中box-sizing
+    border-box: 现在的盒子模型， padding border等不会改变盒子的大小，会从盒子内部实现填充
+        向内扩展
+
+calc() 计算元素像素值
+    width: calc(25% - 2px);
+==================================================================================
+
+http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
+
+只要在父级盒子中添加display: flex;就可以了
+    添加浏览器前缀 -webkit- 真实工作， postcss插件
+
+想要文字垂直水平居中：
+    text-align: center;
+    line-height 等于父级容器的height值是方法之一
+
+如果父级用了弹性布局，子元素就不需要在用float浮动了(包括vercital-align
+什么的....)
+
+弹性布局父级上使用的重要属性：
+    1、justify-content 子元素水平方向上的布局属性
+        center: 居中  ***
+        flex-start: 居左
+        flex-end: 居右
+        space-between 两端对齐 ***
+        space-around 每个子元素 拉手分布  ***
+    2、align-items 子元素的垂直方向上的布局属性
+        stretch 拉伸 默认值
+        center 居中 ***
+        flex-start 顶部
+        flex-end 底部
+    3、align-content  多行的时候，垂直方向上的布局方式
+        stretch 拉伸 默认值
+        center 居中 ***
+        flex-start 顶部
+        flex-end 底部
+    4、flex-direction 子元素的排列方式（方向）
+        row: 横向排列
+        row-reverse: 横向逆向排列
+        column: 纵向排列
+        column-reverse: 纵向逆向排列
+    5、flex-wrap  定义如何包裹子元素的 子元素是否在一行显示
+        nowrap 不换行
+        wrap  换行
+    6、flex-flow  <flex-direction> <flex-wrap> 两个属性的缩写方式
+子级身上的属性：
+    **flex: 1  1为系数，意思是将父元素分成几份，每个子元素占父元素的空间的几分之几
+            ****子元素在划分父元素宽度时，会先将固定的宽度去掉
+    **flex-grow: 1   定义子元素放大比例，即当子元素的布局为justify-content: space-around时
+        该属性的设置会发大子元素从而占满该行，元素间没有空隙
+    align-self: 就是用来覆盖align-items（垂直方向上的布局排列，居中或者上或者下）的，
+        定义子元素单独的垂直方向上的位置
+    order: 用来规定子元素的排列顺序
+            数值越小越靠前
+            默认值为0
+*************************************************************************
+.box {
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
+    margin: 20px;
+    display: flex;
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    flex-wrap: wrap
+
+}
+.div {
+    /* flex: 1; */
+    /* width: 100px; */
+    height: 100px;
+    background: red;
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    line-height: 100px;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+.item1 {
+    /* flex: 1; */
+    width: 100px;
+}
+.item2 {
+    flex: 2;
+}
+
+<div class="box">
+    <div class="div item1">1</div>
+    <div class="div item2">2</div>
+    <!-- <div class="div">3</div>
+    <div class="div">4</div>
+    <div class="div">5</div>
+    <div class="div">6</div>
+    <div class="div">7</div> -->
+</div>
+*************************************************************************
+下面是弹性布局应用的小小好处的体现实例
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>自定义的底部导航</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .nav-box {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        .nav {
+            display: flex;
+            height: 60px;
+            line-height: 60px;
+            font-size: 20px;
+            text-align: center;
+            color: white;
+            background: #ccc;
+        }
+        .nav li {
+            flex: 1;
+            box-sizing: border-box;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+   <div class="nav-box">
+        <ul class="nav">
+            <li>首 页</li>
+            <li>物 流</li>
+            <li>购物车</li>
+        </ul>
+   </div> 
+</body>
+</html>
+*******************************************************************************
+注意 在实际工作中postcss的使用
+http://www.ruanyifeng.com/blog/2016/06/css_modules.html
+https://www.npmjs.com/package/postcss

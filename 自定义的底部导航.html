@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>自定义的底部导航</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .nav-box {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        .nav {
+            display: flex;
+            height: 60px;
+            line-height: 60px;
+            font-size: 20px;
+            text-align: center;
+            color: white;
+            background: #ccc;
+        }
+        .nav li {
+            flex: 1;
+            box-sizing: border-box;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+   <div class="nav-box">
+        <ul class="nav">
+            <li>首 页</li>
+            <li>物 流</li>
+            <li>购物车</li>
+        </ul>
+   </div> 
+</body>
+</html>
